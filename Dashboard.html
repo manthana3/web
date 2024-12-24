@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #d1ecf1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header .datetime {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccc;
+            gap: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #d1ecf1;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card {
+            width: 24%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer; /* เพิ่มให้การ์ดดูคลิกได้ */
+        }
+
+        .dashboard-card h2 {
+            margin: 10px 0;
+        }
+
+        .dashboard-card .add-more {
+            font-size: 12px;
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer; /* เพิ่มเพื่อให้รู้ว่าคลิกได้ */
+        }
+
+        .card-purple {
+            background-color: #f5e0f7;
+        }
+
+        .card-yellow {
+            background-color: #fef3c7;
+        }
+
+        .card-green {
+            background-color: #d4edda;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart {
+            width: 48%;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .chart canvas {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('th-TH', options);
+            document.getElementById('datetime').textContent = formattedDate;
+        }
+
+        function redirectToPage(pageUrl) {
+            window.location.href = pageUrl; // ฟังก์ชันสำหรับเปลี่ยนหน้า
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div id="datetime" class="datetime"></div>
+    </div>
+
+    <div class="navbar">
+        <a href="สถานะการขอเบิก.html">สถานะการขอเบิก</a>
+        <a href="หน้าสถานะการยืมคืน.html">สถานะการยืม - คืน</a>
+        <a href="ประวัติการเบิกยืม.html">ประวัติการเบิกยืม</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#">ออกจากระบบ</a>
+    </div>
+
+    <div class="content">
+        <div class="dashboard">
+            <div class="dashboard-card card-purple" onclick="redirectToPage('จำนวนวัสดุ.html')">
+                <h2>-</h2>
+                <p>จำนวนวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+            <div class="dashboard-card card-yellow" onclick="redirectToPage('ค้นหาวันขอยืม.html')">
+                <h2>-</h2>
+                <p>ยืมคืนวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+            <div class="dashboard-card card-green" onclick="redirectToPage('ค้นหาวันรอรับของ.html')">
+                <h2>-</h2>
+                <p>เบิกจ่ายวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart">
+                <h3 class="chart-title">รายงานจำนวนการยืม - คืน วัสดุ</h3>
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart">
+                <h3 class="chart-title">รายงานจำนวนการเบิกจ่ายวัสดุ</h3>
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

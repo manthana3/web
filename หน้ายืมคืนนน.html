@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #d1ecf1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header .datetime {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .details, .control {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 10px;
+        }
+
+        .details h3 {
+            margin-bottom: 15px;
+        }
+
+        .control select, .control textarea, .control button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .control button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background-color: #45a049;
+        }
+    </style>
+     <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('th-TH', options);
+            document.getElementById('datetime').textContent = formattedDate;
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div id="datetime" class="datetime"></div>
+    </div>
+
+    <div class="content">
+        <div class="details">
+            <h3>รายละเอียดการ ยืม-คืน</h3>
+            <p><strong>ชื่อผู้ยืม:</strong> </p>
+            <p><strong>เบอร์ภายใน:</strong> </p>
+            <p><strong>ชื่อวัสดุ:</strong> </p>
+            <p><strong>ประเภท:</strong> </p>
+            <p><strong>ยี่ห้อ:</strong> </p>
+            <p><strong>เพิ่มเติม:</strong> </p>
+            <p><strong>วันที่ยืม:</strong> </p>
+            <p><strong>วันที่คืน:</strong> </p>
+            <p><strong>สถานที่:</strong></p>
+            <p><strong>Email:</strong> </p>
+            <p><strong>หมายเลขครุภัณฑ์:</strong> </p>
+            <p><strong>อุปกรณ์:</strong> </p>
+            <p><strong>จำนวน:</strong> </p>
+        </div>
+
+        <div class="control">
+            <h3>เช็ควัสดุ</h3>
+            <div>
+                <label for="category">ประเภท:</label>
+                <select id="category">
+                    <option>ประเภททั้งหมด</option>
+                    <option>วัสดุคอมพิวเตอร์</option>
+                    <option>อุปกรณ์คอมพิวเตอร์</option>
+                </select>
+            </div>
+            <div>
+                <label for="equipment">อุปกรณ์:</label>
+                <select id="equipment">
+                    <option>อุปกรณ์ทั้งหมด</option>
+                </select>
+            </div>
+            <div>
+                <label for="equipment">ยี่ห้อ:</label>
+                <select id="equipment">
+                    <option>ยี่ห้อทั้งหมด</option>
+                </select>
+            </div>
+            <button>ค้นหา</button>
+
+            <h3>การอนุมัติ</h3>
+            <div>
+                <label for="approval">การอนุมัติทั้งหมด:</label>
+                <select id="approval">
+                    <option>อนุมัติ</option>
+                    <option>ไม่อนุมัติ</option>
+                </select>
+            </div>
+            <div>
+                <label for="reason">เหตุผล:</label>
+                <textarea id="reason" rows="5"></textarea>
+            </div>
+            <button>ตกลง</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการเบิกยืม</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #d1ecf1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header .datetime {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccc;
+            gap: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #d1ecf1;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .box-request {
+            background-color: #f5e0e9;
+        }
+
+        .box-borrow {
+            background-color: #e0f5e1;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('th-TH', options);
+            document.getElementById('datetime').textContent = formattedDate;
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div id="datetime" class="datetime"></div>
+    </div>
+
+    <div class="navbar">
+        <a href="สถานะการขอเบิก.html">สถานะการขอเบิก</a>
+        <a href="หน้าสถานะการยืมคืน.html">สถานะการยืม - คืน</a>
+        <a href="ประวัติการเบิกยืม.html">ประวัติการเบิกยืม</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#">ออกจากระบบ</a>
+    </div>
+
+    <div class="content">
+        <div class="section-title">ประวัติการเบิกยืม</div>
+        <div class="box-container">
+            <div class="box box-request" onclick="window.location.href='ขอเบิก.html'">ประวัติการขอเบิก</div>
+            <div class="box box-borrow" onclick="window.location.href= 'ยืม-คืน.html'">ประวัติการยืม - คืน</div>
+        </div>
+    </div>
+</body>
+</html>

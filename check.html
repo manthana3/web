@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เช็ควัสดุ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #d1ecf1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header .datetime {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #e9f5fc;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('th-TH', options);
+            document.getElementById('datetime').textContent = formattedDate;
+        }
+
+        function goBack() {
+            window.history.back(); // ย้อนกลับไปยังหน้าก่อนหน้า
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div id="datetime" class="datetime"></div>
+    </div>
+
+    <div class="content">
+        <div class="section-title">เช็ควัสดุ</div>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>วัสดุ</th>
+                        <th>หมายเลขครุภัณฑ์</th>
+                        <th>ประเภท</th>
+                        <th>อุปกรณ์</th>
+                        <th>ยี่ห้อ</th>
+                        <th>จำนวน</th>
+                        <th>คงเหลือ</th>
+                        <th>รายละเอียด</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ปุ่มย้อนกลับ -->
+        <div class="back-button-container">
+            <button class="back-button" onclick="goBack()">ย้อนกลับ</button>
+        </div>
+    </div>
+</body>
+</html>
